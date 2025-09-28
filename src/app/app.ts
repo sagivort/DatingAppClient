@@ -9,6 +9,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class App implements OnInit {
 
+  protected readonly title = signal('DatingApp-Client');
+  protected myname = 'John Doe';
+  protected members = signal<any[]>([]);
+
   // ctor -- 1
   constructor() {}
 
@@ -18,13 +22,12 @@ export class App implements OnInit {
   // -- 3
   ngOnInit(): void {
     this.http.get('http://localhost:5094/api/members').subscribe({
-      next: members => console.log(members),
+      next: res => this.members.set(res as any[]),
       error: err => console.log(err),
       complete: () => console.log('Request completed')
   });
   }
 
-  protected readonly title = signal('DatingApp-Client');
-  protected myname = 'John Doe';
+  
   
 }
