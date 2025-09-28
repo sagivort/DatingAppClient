@@ -1,5 +1,6 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class App implements OnInit {
 
   protected readonly title = signal('DatingApp-Client');
   protected myname = 'John Doe';
-  protected members = signal<any[]>([]);
+  protected members = signal<any>([]);
 
   // ctor -- 1
   constructor() {}
@@ -20,12 +21,17 @@ export class App implements OnInit {
   private http = inject(HttpClient);
 
   // -- 3
-  ngOnInit(): void {
-    this.http.get('http://localhost:5094/api/members').subscribe({
-      next: res => this.members.set(res as any[]),
-      error: err => console.log(err),
-      complete: () => console.log('Request completed')
-  });
+  async ngOnInit(){
+    this.members.set(await this.getMembers());
+  }
+
+  async getMembers() {
+    try {
+      return lastValueFrom(this.http.get('http://localhost:5094/api/members'));
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } 
   }
 
   
