@@ -8,10 +8,10 @@ import { lastValueFrom } from 'rxjs';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App implements OnInit {
 
-  protected readonly title = signal('DatingApp-Client');
-  protected myname = 'John Doe';
+  protected title = 'Dating App Client';
   protected members = signal<any>([]);
 
   // ctor -- 1
