@@ -1,18 +1,4 @@
 <app-nav/>
 
-<div class="card bg-base-100 w-1/2 mx-auto shadow-xl">
-    <div class="text-3xl text-red-400 font-bold text-center mt-24">{{title}}</div>
-        <ul class="list">
-            @for (member of members(); track $index) {
-                <li class="list-row items-center">
-                    <img src="/user.png" alt="Profile Picture" class="size-12 rounded-box" />
-                    <div>
-                         {{member.id}} , {{member.displayName}}, {{member.email}}
-                    </div>
-                   
-                </li>
-            }
-        </ul>
-</div>  
+<app-home [membersFromApp]="members()"></app-home> 
 
-<button class="btn btn-active btn-info">Info</button>
