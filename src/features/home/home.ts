@@ -12,10 +12,14 @@ import { User } from '../../types/user';
 export class Home {
 
   @Input({required: true}) membersFromApp : User[] = [];
-  protected showRegister = signal(false);
+  protected isShowRegister = signal(true);
 
-  showeRegister() {
-    this.showRegister.set(true);
+  showRegister() {
+    this.isShowRegister.set(true);
+  }
+
+  cancelRegister() {
+    this.isShowRegister.set(false);
   }
 
 }

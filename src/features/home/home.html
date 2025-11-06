@@ -1,5 +1,5 @@
 <div class="hero bg-base-200 min-h-screen">
-    @if (showRegister()) {
+    @if (!isShowRegister()) {
   <div class="hero-content text-center">
         <div class="flex flex-col items-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -17,7 +17,9 @@
     </div>
     }  @else {
         <div class="w-full text-2xl text-center flex justify-center">
-            <app-register [membersFromHome]="membersFromApp"
+            <app-register 
+                [membersFromHome]="membersFromApp" 
+                (cancelRegister)="cancelRegister()"
                 class="w-full"
             />
         </div>
