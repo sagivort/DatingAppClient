@@ -1,4 +1,13 @@
 <app-nav/>
 
-<app-home [membersFromApp]="members()"></app-home> 
+<!-- <app-home [membersFromApp]="members()"></app-home>  -->
+
+<div 
+    [class.bg-amber-100]="router.url === '/members'" 
+    class="mt-24 container mx-auto px-2">
+    <router-outlet></router-outlet>
+</div>
+
+
+
 
